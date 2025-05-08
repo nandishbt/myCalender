@@ -6,6 +6,11 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-icons/font/bootstrap-icons.css'; 
+import { Calendar } from '@fullcalendar/core';
+import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+
 export default function Home() {
 
   const [view, setView] = useState("dayGridMonth");
@@ -19,40 +24,7 @@ export default function Home() {
 
     <div className="min-h-screen p-4 bg-gray-100">
       <div className="max-w-5xl mx-auto bg-white p-4 rounded-xl shadow-md">
-        <h1 className="text-2xl font-bold mb-4 text-blue-600">Calendar App</h1>
-
-        {/* View Tabs */}
-        <div className="flex space-x-2 mb-4">
-          <button
-            onClick={() => setView("dayGridMonth")}
-            className={`px-4 py-2 rounded ${
-              view === "dayGridMonth"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-500"
-            }`}
-          >
-            Monthly
-          </button>
-          <button
-            onClick={() => setView("timeGridWeek")}
-            className={`px-4 py-2 rounded ${
-              view === "timeGridWeek" ? "bg-blue-600 text-white" : "bg-gray-600"
-            }`}
-          >
-            Weekly
-          </button>
-          <button
-            onClick={() => setView("timeGridDay")}
-            className={`px-4 py-2 rounded ${
-              view === "timeGridDay" ? "bg-blue-600 text-white" : "bg-gray-600"
-            }`}
-          >
-            Daily
-          </button>
-        </div>
-
-       
-        
+        <h1 className="text-4xl font-bold mb-4  text-center ">Calendar App</h1>
 
         {/* Calendar */}
         <FullCalendar
@@ -62,13 +34,28 @@ export default function Home() {
           headerToolbar={{
             start: "prev,next today",
             center: "title",
-            end: "",
+            end: "dayGridMonth timeGridWeek timeGridDay",
           }}
+          themeSystem = "bootstrap5"
           height="auto"
+
+          nowIndicator={true}
+          selectable={true}
+          selectMirror={true}
+
+          dayMaxEventRows={true}
+       
+
+
           events={[
-            { title: "Meeting", date: "2025-05-07" },
-            { title: "Workout", date: "2025-05-08T10:00:00" },
+            { title: "Project", start: "2025-05-08T10:00:00", end: "2025-05-09T12:00:00" },
+            { title: "Workout", start: "2025-05-10T18:00:00", end: "2025-05-10T19:00:00" },
+            { title: "Dinner", start: "2025-05-11T20:00:00", end: "2025-05-11T21:00:00" },
+            { title: "Meeting", start: "2025-05-18T10:00:00", end: "2025-05-18T12:00:00" },
           ]}
+          eventColor="green"
+         
+          
         />
       </div>
     </div>
